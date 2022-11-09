@@ -1,7 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 const Register = () => {
+
+    const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleRegister = e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const email = form.email.value;
+        const pass = form.password.value;
+
+        createUser(email, pass)
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                form.reset();
+                navigate('/login')
+            })
+            .catch(err => console.error(err))
+    }
+
     return (
         <div className="hero mb-20">
             <div className="hero-content grid grid-cols md:grid-cols-2 gap-20">
@@ -14,7 +36,7 @@ const Register = () => {
 
                     <h1 className="text-5xl font-bold text-center">Register</h1>
 
-                    <form className="card-body">
+                    <form className="card-body" onSubmit={handleRegister}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
