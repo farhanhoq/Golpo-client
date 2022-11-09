@@ -1,11 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
 const DetailsService = () => {
-    const { title, img, description, price } = useLoaderData();
+    const { title, img, description, price, _id } = useLoaderData();
     const { user } = useContext(AuthContext);
-    console.log(user)
+    const [review, setReview] = useState([])
+
+    const handleReview = e => {
+
+        const form = e.target;
+        const name = form.cname.value;
+        const email = user?.email || "Not Found";
+        const message = form.message.value;
+
+        const review = {
+            review: _id,
+            cName: name,
+            email,
+            message
+        }
+
+        fetch("http://localhost:5000/reviews", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(review),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                alert("Review Done");
+                form.reset();
+                }
+            })
+            .catch((err) => console.error(err));
+    }
 
     return (
         <div className="grid grid-cols-6 gap-6">
@@ -94,12 +125,16 @@ const DetailsService = () => {
                     <div className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg text-center">Please give your review here</h3>
-                            <input type="text" name="cname" placeholder="Enter Full Name" className="my-3 bg-black border border-orange-300 text-2xl"/>
-                            <input type="text" name="email" placeholder="Your E-mail" className="my-3 bg-black border border-orange-300 text-2xl" defaultValue={user?.email} readOnly/>
-                            <textarea name="message" className="textarea w-full my-5 border-orange-300" placeholder="How much you like our service?"></textarea>
-                            <div className="modal-action">
-                            <label htmlFor="my-modal-6" className="btn">Yay!</label>
-                            </div>
+                            <form onSubmit={handleReview}>
+                                <input type="text" name="cname" placeholder="Enter Full Name" className="my-3 bg-black border border-orange-300 text-2xl"/>
+                                <input type="text" name="email" placeholder="Your E-mail" className="my-3 bg-black border border-orange-300 text-2xl" defaultValue={user?.email} readOnly/>
+                                <textarea name="message" className="textarea w-full my-5 border-orange-300" placeholder="How much you like our service?"></textarea>
+                                <div className="modal-action">
+                                    <label htmlFor="my-modal-6">
+                                        <input className="btn" type="submit" value="Done" />
+                                    </label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
