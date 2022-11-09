@@ -50,7 +50,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case text-3xl mr-10">Golpo</Link>
+                <Link className="btn btn-ghost normal-case text-5xl mr-10">Golpo</Link>
             </div>
 
             <div className="navbar-center hidden lg:flex ml-96">
@@ -77,7 +77,10 @@ const Navbar = () => {
                 {
                     user?.uid ?
                     
+                        <>
+                            <Link to="/addservice" className="btn btn-ghost mr-2">Add Service</Link>
                             <Link onClick={handleLogOut} to="/login" className="btn mr-2">Logout</Link>
+                        </>
                         :
                         <>
                             <Link to="/login" className="btn mr-2">Login</Link>
