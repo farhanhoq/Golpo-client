@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import ShowModals from "../../modals/ShowModals";
 import Review from "./Review";
 
 const DetailsService = () => {
@@ -16,7 +17,6 @@ const DetailsService = () => {
     const { user } = useContext(AuthContext);
 
     const handleReview = e => {
-        e.preventDefault();
         const form = e.target;
         const name = form.cname.value;
         const email = user?.email || "Not Found";
@@ -26,7 +26,9 @@ const DetailsService = () => {
             reviewID: _id,
             cName: name,
             email,
-            message
+            message,
+            sName: title,
+            sImg: img
         }
 
         fetch("http://localhost:5000/reviews", {
@@ -87,24 +89,9 @@ const DetailsService = () => {
                     ></Review>)
                 }
                 <div className="flex justify-center mt-6">
-                    <label htmlFor="my-modal-6" className="btn btn-ghost">Give Review</label>
+                    <label htmlFor="my-modal-3" className="btn btn-ghost">Give Review</label>
 
-                    <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-                    <div className="modal modal-bottom sm:modal-middle">
-                        <div className="modal-box">
-                            <h3 className="font-bold text-lg text-center">Please give your review here</h3>
-                            <form onSubmit={handleReview}>
-                                <input type="text" name="cname" placeholder="Enter Full Name" className="my-3 bg-black border border-orange-300 text-2xl" defaultValue={user?.displayName}/>
-                                <input type="text" name="email" placeholder="Your E-mail" className="my-3 bg-black border border-orange-300 text-2xl" defaultValue={user?.email} readOnly/>
-                                <textarea name="message" className="textarea w-full my-5 border-orange-300" placeholder="How much you like our service?"></textarea>
-                                <div className="modal-action">
-                                    <label htmlFor="my-modal-6">
-                                        <input className="btn" type="submit" value="Done" />
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <ShowModals handleReview={handleReview}></ShowModals>
                 </div>
             </div>
 
