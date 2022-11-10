@@ -17,7 +17,7 @@ const ReviewCard = ({ review,handleDelete }) => {
                 <h2 className="card-title">{sName}</h2>
                 <p>{message}</p>
                 <div className="card-actions justify-end">
-                    <Link  to="/editreview" className="btn btn-outline">Edit</Link>
+                    <Link to="/editreview" className="btn btn-outline">Edit</Link>
                     <Link onClick={() => handleDelete(_id)} className="badge badge-outline">Delete</Link>
                 </div>
             </div>

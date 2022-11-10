@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
-const EditReview = () => {
+const EditReview = ({review}) => {
 
     const { user } = useContext(AuthContext);
-    const reviews = useLoaderData();
-    const  _id  = reviews.cName;
-    console.log(_id)
+    console.log(review)
 
     
     return (

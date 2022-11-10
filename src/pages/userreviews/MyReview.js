@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
+import EditReview from './EditReview';
 import ReviewCard from './ReviewCard';
 
 const MyReview = () => {
