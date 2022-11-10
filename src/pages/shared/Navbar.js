@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCameraRetro } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
 
@@ -50,6 +52,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
+                <FontAwesomeIcon size="5x" icon={faCameraRetro} />
                 <Link className="btn btn-ghost normal-case text-5xl mr-10">Golpo</Link>
             </div>
 
