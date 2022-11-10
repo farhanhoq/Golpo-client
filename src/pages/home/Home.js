@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 import About from './About';
 import Contact from './Contact';
-import Footer from './Footer';
 import PopularServices from './PopularServices';
 import Showcase from './Showcase';
 import UserAddedService from './UserAddedService';
@@ -18,7 +17,6 @@ const Home = () => {
             <UserAddedService></UserAddedService>
             <Showcase></Showcase>
             <Contact></Contact>
-            <Footer></Footer>
         </div>
     );
 };
