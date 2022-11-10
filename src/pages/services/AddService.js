@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
 
 const AddService = () => {
 
@@ -38,6 +39,9 @@ const AddService = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Golpo | Add Services</title>
+            </Helmet>
             <form onSubmit={handleAddService}>
                 <input type="text" name="title" placeholder="Enter Service Name" className="my-3 bg-black border border-orange-300 text-2xl"/>
                 <input type="text" name="image" placeholder="Enter iamge url" className="my-3 bg-black border border-orange-300 text-2xl"/>

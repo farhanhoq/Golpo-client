@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogin = e => {
@@ -24,8 +25,19 @@ const Login = () => {
             .catch(err => console.error(err))
     }
 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <div className="hero mb-20">
+            <Helmet>
+                <title>Golpo | Login</title>
+            </Helmet>
             <div className="hero-content grid grid-cols md:grid-cols-2 gap-20">
 
                 <div className="text-center lg:text-left">
@@ -72,6 +84,13 @@ const Login = () => {
                     </form>
 
                     <p className="text-center text-sm">New to CAR DOCTOR? <Link to='/register' className="font-bold">Sign Up</Link></p>
+
+                    <div>
+                        <p className='text-center'><small>Social Login</small></p>
+                        <p className='text-center'>
+                            <button onClick={handleGoogleSignIn} className='btn btn-ghost'>Google</button>
+                        </p>
+                    </div>
 
                 </div>
             </div>

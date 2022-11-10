@@ -8,7 +8,7 @@ const PopularServices = () => {
     console.log(services)
 
     useEffect(() => {
-        fetch("http://localhost:5000/services")
+        fetch("http://localhost:5000/services?size=3&")
             .then(res => res.json())
             .then(data => setServices(data))
     }, []);
@@ -18,7 +18,7 @@ const PopularServices = () => {
             <h2 className='text-4xl text-center font-bold my-3'>Packages We Offer</h2>
             <div className='grid grid-cols-3 w-4/5 mx-auto my-10 gap-10'>
             {
-                services.slice(-3).map(s => <ServiceCard
+                services.map(s => <ServiceCard
                     key={s._id}
                     service={s}
                 ></ServiceCard>)

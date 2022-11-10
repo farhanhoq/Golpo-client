@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import ShowModals from "../../modals/ShowModals";
 import Review from "./Review";
@@ -89,9 +89,16 @@ const DetailsService = () => {
                     ></Review>)
                 }
                 <div className="flex justify-center mt-6">
-                    <label htmlFor="my-modal-3" className="btn btn-ghost">Give Review</label>
+                    {
+                        user?.uid ?
+                            <>
+                                <label htmlFor="my-modal-3" className="btn btn-ghost">Give Review</label>
 
-                    <ShowModals handleReview={handleReview}></ShowModals>
+                                <ShowModals handleReview={handleReview}></ShowModals>
+                            </>
+                            :
+                            <p>Please <Link to="/login">Login</Link> to give a review.</p>
+                    }
                 </div>
             </div>
 
