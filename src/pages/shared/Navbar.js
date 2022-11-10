@@ -76,17 +76,39 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user?.uid ?
-                    
-                        <>
-                            <Link to="/addservice" className="btn btn-ghost mr-2">Add Service</Link>
-                            <Link onClick={handleLogOut} to="/login" className="btn mr-2">Logout</Link>
-                        </>
+                    <>
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li>
+                                        <Link to="myreviews">My Reviews</Link>
+                                        </li>
+                                        <li>
+                                        <Link to="addservice">Add Service</Link>
+                                        </li>
+                                        <li>
+                                        <Link onClick={handleLogOut} to="/login" className="mr-2">Logout</Link>
+                                        </li>
+                            </ul>
+                        </div>
+                    </>
                         :
-                        <>
+                                
+                    <>
+                        <ul className="menu menu-horizontal p-0 text-xl">
+                            <li>
                             <Link to="/login" className="btn mr-2">Login</Link>
+                            </li>
+                            <li>
                             <Link to="/register" className="btn">Sign Up</Link>
-                        </>
+                            </li>
+                        </ul>
+                    </>
                 }
+
             </div>
         </div>
     );

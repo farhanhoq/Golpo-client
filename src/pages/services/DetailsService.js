@@ -94,7 +94,7 @@ const DetailsService = () => {
                         <div className="modal-box">
                             <h3 className="font-bold text-lg text-center">Please give your review here</h3>
                             <form onSubmit={handleReview}>
-                                <input type="text" name="cname" placeholder="Enter Full Name" className="my-3 bg-black border border-orange-300 text-2xl"/>
+                                <input type="text" name="cname" placeholder="Enter Full Name" className="my-3 bg-black border border-orange-300 text-2xl" defaultValue={user?.displayName}/>
                                 <input type="text" name="email" placeholder="Your E-mail" className="my-3 bg-black border border-orange-300 text-2xl" defaultValue={user?.email} readOnly/>
                                 <textarea name="message" className="textarea w-full my-5 border-orange-300" placeholder="How much you like our service?"></textarea>
                                 <div className="modal-action">

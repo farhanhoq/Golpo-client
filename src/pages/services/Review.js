@@ -19,7 +19,7 @@ const Review = ({ review }) => {
                         
                     <div className="card-body">
                         <h2 className="card-title text-lg">{message}</h2>
-                        <p className='text-sm'>by Herin Khan</p>
+                        <p className='text-sm'>by {cName}</p>
                     </div>
                 </div>
                 </div>

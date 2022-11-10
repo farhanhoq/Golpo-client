@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthProvider';
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, profileUpdate } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleRegister = e => {
@@ -13,15 +13,29 @@ const Register = () => {
         const form = e.target;
         const email = form.email.value;
         const pass = form.password.value;
+        const name = `${form.f_name.value} ${form.l_name.value}`;
+        const photoUrl = form.d_image.value;
 
         createUser(email, pass)
             .then(res => {
                 const user = res.user;
                 console.log(user);
                 form.reset();
-                navigate('/login')
+                navigate('/login');
+                handleUpdateUserProfile(name, photoUrl)
             })
             .catch(err => console.error(err))
+        
+        const handleUpdateUserProfile = (name, photoURL) => {
+            const profile = {
+                displayName: name,
+                photoURL: photoURL,
+            };
+
+            profileUpdate(profile)
+                .then(() => {})
+                .catch((error) => console.error(error));
+            };
     }
 
     return (
@@ -37,6 +51,42 @@ const Register = () => {
                     <h1 className="text-5xl font-bold text-center">Register</h1>
 
                     <form className="card-body" onSubmit={handleRegister}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">First Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="f_name"
+                                placeholder="Given Name"
+                                className="input input-bordered"
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Last Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="l_name"
+                                placeholder="Family Name"
+                                className="input input-bordered"
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Image Link</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="d_image"
+                                placeholder="enter the image link"
+                                className="input input-bordered"
+                            />
+                        </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
