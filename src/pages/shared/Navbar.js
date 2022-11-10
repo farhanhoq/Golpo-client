@@ -13,7 +13,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-500 mb-20">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -34,19 +34,19 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                        <Link to="">Home</Link>
+                        <Link to="/">Home</Link>
                         </li>
                         <li>
-                        <Link to="">About</Link>
+                        <Link to="/">About</Link>
                         </li>
                         <li>
-                        <Link to="">Services</Link>
+                        <Link to="/services">Services</Link>
                         </li>
                         <li>
-                        <Link to="">Login</Link>
+                        <Link to="/blogs">Blogs</Link>
                         </li>
                         <li>
-                        <Link to="">Item 3</Link>
+                        <Link to="/contact">Contact</Link>
                         </li>
                     </ul>
                 </div>
@@ -65,7 +65,7 @@ const Navbar = () => {
                     <Link to="/services">Services</Link>
                     </li>
                     <li className="mx-2">
-                    <Link to="/showcase">Showcase</Link>
+                    <Link to="/blogs">Blogs</Link>
                     </li>
                     <li className="mx-2">
                     <Link to="/contact">Contact</Link>

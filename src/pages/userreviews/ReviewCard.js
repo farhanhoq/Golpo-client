@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const ReviewCard = ({ review,handleDelete }) => {
     
     const { reviewID, cName, message, sImg, sName, _id } = review;
-    const [reviews, setReviews] = useState([]);
     
     
 

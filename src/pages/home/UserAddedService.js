@@ -8,7 +8,7 @@ const UserAddedService = () => {
     const { user } = useContext(AuthContext);
     const [services, setServices] = useState([]);
 
-    fetch(`http://localhost:5000/services?email=${user?.email}`)
+    fetch(`https://golpo-photography-server.vercel.app/services?email=${user?.email}`)
         .then(res => res.json())
         .then(data => setServices(data));
 

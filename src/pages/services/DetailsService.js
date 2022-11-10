@@ -9,7 +9,7 @@ const DetailsService = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://golpo-photography-server.vercel.app/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))
     }, []);
@@ -31,7 +31,7 @@ const DetailsService = () => {
             sImg: img
         }
 
-        fetch("http://localhost:5000/reviews", {
+        fetch("https://golpo-photography-server.vercel.app/reviews", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

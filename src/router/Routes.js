@@ -9,6 +9,7 @@ import DetailsService from "../pages/services/DetailsService";
 import Services from "../pages/services/Services";
 import EditReview from "../pages/userreviews/EditReview";
 import About from "../pages/home/About";
+import Blog from "../Blog";
 import PrivateRoute from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
@@ -33,13 +34,17 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/blogs',
+                element: <Blog></Blog>
+            },
+            {
                 path: '/myreviews',
                 element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
             },
             {
                 path: '/editreview',
                 element: <EditReview></EditReview>,
-                loader: () => fetch('http://localhost:5000/reviews')
+                loader: () => fetch('https://golpo-photography-server.vercel.app/reviews')
             },
             {
                 path: '/addservice',
@@ -48,12 +53,12 @@ export const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://golpo-photography-server.vercel.app/services')
             },
             {
                 path: '/services/:id',
                 element: <DetailsService></DetailsService>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({params}) => fetch(`https://golpo-photography-server.vercel.app/services/${params.id}`)
             },
         ]
     }
